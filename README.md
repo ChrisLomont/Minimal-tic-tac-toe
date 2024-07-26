@@ -1,4 +1,4 @@
-﻿﻿# Minimal Size Tic Tac Toe Trees
+﻿﻿﻿# Minimal Size Tic Tac Toe Trees
 
 Chris Lomont
 
@@ -10,13 +10,13 @@ July 2024
 
 
 
-![robot](../imgs/robot.jpg)
+![robot](imgs/robot.jpg)
 
 It's pretty easy (and a good programming exercise) to make a tree of all tic-tac-toe games with best moves in each position. Recently I wanted a minimal table to play perfect tic tac toe; by minimal I wanted as few table entries as possible to ensure the program is unbeatable. I found results I've not found published anywhere else, so here they are. 
 
 These 22 table entries let a computer program play perfect tic tac toe solely by table lookups. Perfect means never losing, and winning as much as expected against random opponents. This list is provably (in the mathematical sense) minimal. This note describes how I made this.
 
-![TTTMin22](../imgs/TTTMin22.png)
+![TTTMin22](imgs/TTTMin22.png)
 
 Code implementing all of this in C# (and some Mathematica for images) is on my GitHub site at https://github.com/ChrisLomont/Minimal-tic-tac-toe.
 
@@ -137,7 +137,7 @@ To summarize so far:
 
 Here is a representation of these 765 nodes, split by depth.
 
-![TTT765_small](../imgs/TTT765_small.png)
+![TTT765_small](imgs/TTT765_small.png)
 
 ## Best moves
 
@@ -224,21 +224,21 @@ You can make a bot able to play first or second by merging the 41 and 127 trees 
 
 Here's the 41 size set
 
-![ttt_41](../imgs/ttt_41.png)
+![ttt_41](imgs/ttt_41.png)
 
 And here's the 127
 
-![ttt_127](../imgs/ttt_127.png)
+![ttt_127](imgs/ttt_127.png)
 
 ## one side makes you smaller...
 
-![smaller](../imgs/smaller.jpg)
+![smaller](imgs/smaller.jpg)
 
 Now, this seems pretty minimal. But can we go smaller? Yep, we can. Consider the 41 nodes for the computer first, move to center version. The only moves to lookup in a game are those with even depth - we can throw out odd depth nodes. This gives a 22 node tree. But what if this can be shrunk? Since we solved the expression requiring odd depth nodes, it may be some weird trick that if we model only the even depth nodes, that there is an even smaller set of even nodes....
 
 To do this, consider "implies" clauses. When the computer reaches node $A$, then it chooses one node of it's children $B$ (an OR clause over all children), and, if that node is chosen, then all grandchildren $G^A_B$ of $A$ going through $B$ must be chosen since the opponent can choose any of them. So this leads to clauses that look like $A=>\bigvee_B (\bigwedge G^A_B)$.  Now the only nodes result in the provably minimal set of 22 nodes:
 
-![TTTMin22](../imgs/TTTMin22.png)
+![TTTMin22](imgs/TTTMin22.png)
 
 To track moves from parent to child (to make the clause relating parent to grandchildren), it is helpful to intorduce more boolean variables to track the edge chosen so we get optimal moves easier. Then it is equivalent to find the minimal set of nodes, or the minimal set of edges chosen (tracking parent and child, for example).
 
@@ -255,15 +255,15 @@ The Optimal column has minimal vertex count, or equivalently optimal edge count.
 
 Here is the 75 list:
 
-![ttt_75](../imgs/ttt_75.png)
+![ttt_75](imgs/ttt_75.png)
 
 Here is the 74 table
 
-![TTTMin74](../imgs/TTTMin74.png)
+![TTTMin74](imgs/TTTMin74.png)
 
 Thus, combining the 22 and 74 vertices, **we obtain the final playable table of 96 nodes**.
 
- ![TTTMin96](../imgs/TTTMin96.png)
+ ![TTTMin96](imgs/TTTMin96.png)
 
 ## Playing strength
 
