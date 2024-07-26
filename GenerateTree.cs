@@ -117,7 +117,8 @@
         }
 
 
-        public void ScoreGraph(bool verbose = true)
+        // reverse tic tac toe: win by making opponent land on three in a row
+        public void ScoreGraph(bool verbose = true, bool reverseTicTacToe = false)
         {
             var pref = "   ";
             if (verbose)
@@ -125,6 +126,21 @@
             // iterate
             var done = false;
             var pass = 0;
+
+            int negateScoreMultiplier = reverseTicTacToe ? -1 : 1;
+            if (reverseTicTacToe)
+            {
+                // negate leafs is all that is needed
+                foreach (var p in nodes)
+                {
+                    var n = p.Value;
+                    if (n.LeafCount == 1)
+                    {
+                        n.score = -n.score;
+                    }
+                }
+            }
+
             while (!done)
             {
                 if (verbose)
@@ -154,13 +170,14 @@
                 if (verbose)
                     Console.WriteLine($"->{nodes.Values.Max(c => c.draws)} updated {updated} unscored {unscored}");
                 done = updated == 0; // needs more work
-                                     // if (++pass > 10) break;
+                // if (++pass > 10) break;
             }
 
             if (verbose)
             {
-                var total = startNode.wins1+startNode.wins2+startNode.draws;
-                Console.WriteLine($"{pref}Player 1 wins {startNode.wins1}({Util.Pct(startNode.wins1,total)}), Player 2 wins {startNode.wins2}({Util.Pct(startNode.wins2, total)}), draws {startNode.draws}({Util.Pct(startNode.draws, total)})");
+                var total = startNode.wins1 + startNode.wins2 + startNode.draws;
+                Console.WriteLine(
+                    $"{pref}Player 1 wins {startNode.wins1}({Util.Pct(startNode.wins1, total)}), Player 2 wins {startNode.wins2}({Util.Pct(startNode.wins2, total)}), draws {startNode.draws}({Util.Pct(startNode.draws, total)})");
             }
 
             void SelectBest(Node b)
@@ -210,6 +227,7 @@
                             b.bestMoves.Add(i);
                         }
                     }
+
                     b.score = curScore;
                 }
             }

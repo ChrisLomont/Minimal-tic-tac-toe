@@ -6,7 +6,7 @@ July 2024
 
 [GitHub repo](https://github.com/ChrisLomont/Minimal-tic-tac-toe)
 
-[Blog article](https://lomont.org/posts/posts/2024/minimaltictactoe/) 
+[Blog article](https://lomont.org/posts/2024/minimaltictactoe/) 
 
 
 
@@ -269,14 +269,14 @@ Thus, combining the 22 and 74 vertices, **we obtain the final playable table of 
 
 A simple way to see how good the table plays, we can compare it in a round robin tournament with a perfect hashed tree player, table player, and a random player, each series over 100,000 games, to obtain the following scores:
 
-| Player 1 wins              | Player 2 wins              | Draws            |
-| -------------------------- | -------------------------- | ---------------- |
-| Hash tree 96844 (96.84%),  | Random 0 (0.00%),          | 3156 (3.16%)     |
-| Random 0 (0.00%),          | Hash tree 77579 (77.58%),  | 22421 (22.42%)   |
-| Tiny table 95777 (95.78%), | Random 0 (0.00%),          | 4223 (4.22%)     |
-| Random 0 (0.00%),          | Tiny table 85070 (85.07%), | 14930 (14.93%)   |
-| Hash tree 0 (0.00%),       | Tiny table 0 (0.00%),      | 100000 (100.00%) |
-| Tiny table 0 (0.00%),      | Hash tree 0 (0.00%),       | 100000 (100.00%) |
+| Player 1 wins                 | Player 2 wins                 | Draws            |
+| ----------------------------- | ----------------------------- | ---------------- |
+| Hash tree 96844 (96.84%)      | *Random 0 (0.00%)*            | 3156 (3.16%)     |
+| *Random 0 (0.00%)*            | Hash tree 77579 (77.58%)      | 22421 (22.42%)   |
+| **Tiny table 95777 (95.78%)** | *Random 0 (0.00%)*            | 4223 (4.22%)     |
+| *Random 0 (0.00%)*            | **Tiny table 85070 (85.07%)** | 14930 (14.93%)   |
+| Hash tree 0 (0.00%)           | **Tiny table 0 (0.00%)**      | 100000 (100.00%) |
+| **Tiny table 0 (0.00%)**      | Hash tree 0 (0.00%)           | 100000 (100.00%) |
 
 As expected, neither tree or table players ever lose. And, even though the minimal table tree was not optimized for maximal wins, it performs as well as the full hashed node tree.
 

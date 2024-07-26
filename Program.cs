@@ -37,17 +37,28 @@ using Lomont.Games.TicTacToe;
 Tests.Testing();
 
 TreeTypes();
+// ReverseTTT();
 // MakeSmallTable(false);
 // Z3Stats();
 // TestPlayEngine();
 // DumpMMA();
 // TestTinyPlay();
 // PlayTrees();
- PlayTinyNodes();
+ //PlayTinyNodes();
 // PlayTblVsRandomContinued();
 // DumpNodes();
 
 return;
+
+// reverse tic tac toe stats, same tree as before, force your enemy to win :)
+void ReverseTTT()
+{
+    var gen = new GenerateTree();
+    gen.Generate(2); // symmetry tree
+    gen.ScoreGraph(true
+        , reverseTicTacToe:true
+        ); // doesn't seem to make anything different :|
+}
 
 // dump tree to mathematica
 void DumpMma()
